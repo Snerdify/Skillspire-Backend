@@ -14,6 +14,7 @@ from langchain_core.documents import Document
 from langchain.chains import create_retrieval_chain
 from langchain_community.document_loaders import PyPDFLoader
 
+
 os.environ["OPENAI_API_KEY"] = apikey
 
 # llm
