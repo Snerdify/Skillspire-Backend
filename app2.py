@@ -10,6 +10,8 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.documents import Document
+from langchain.chains import create_retrieval_chain
 
 os.environ["OPENAI_API_KEY"] = apikey
 
@@ -37,6 +39,19 @@ Question: {input}""")
 output_parser = StrOutputParser()
 
 document_chain = create_stuff_documents_chain(llm, prompt= prompt_template2,output_parser=output_parser)
+
+retriever = vector_db.as_retriever()
+retrieval_chain = create_retrieval_chain(retriever, document_chain)
+
+
+#response = retrieval_chain.invoke({"input": "how can langsmith help with testing?"})
+# print(response["answer"])
+
+st.title('Skillspire')
+text = st.text_input('Interact with your model')
+# context = Document(page_content="langsmith can let you visualize test results") # Assuming you want to use the first document as context
+if text:
+    st.write(retrieval_chain.invoke({ "input": "how can langsmith help with testing?"}))
 
 
 
