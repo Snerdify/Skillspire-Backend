@@ -19,7 +19,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 ])
 
 # output-parser 
-output_parser = StrOutputParser()
+output_parser = StrOutputParser()  
 
 # chain = llm + model + output_parser
 

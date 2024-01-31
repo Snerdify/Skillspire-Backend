@@ -12,7 +12,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.documents import Document
 from langchain.chains import create_retrieval_chain
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader 
 
 
 os.environ["OPENAI_API_KEY"] = apikey
@@ -64,7 +64,7 @@ st.title('Skillspire')
 text = st.text_input('Interact with your model')
 # context = Document(page_content="langsmith can let you visualize test results") # Assuming you want to use the first document as context
 if text:
-    st.write(retrieval_chain.invoke({ "input": "What is the world war time period?"}))
+    st.write(retrieval_chain.invoke({ "input": text }))
 
 
 
